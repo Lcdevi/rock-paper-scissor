@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>ROCK PAPER SCISSORS from lolo</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="style-rockpaperscissors-laura.css">
+		<script src="https://kit.fontawesome.com/e5b71cac1a.js" crossorigin="anonymous"></script>
+	</head>
+
+	<body>
+		<div id="firstflex">
+			<h1>ROCK PAPER SCISSORS</h1>
+			<div id="choose"> PICK ROCK, PAPER OR SCISSORS</div>
+			<p id="firsttofiveid"> FIRST TO 5 POINTS WIN !</p>
+			<h2 id="finalscore"></h2>
+		</div>
+
+		<div id="selections">
+				<div id="playerResult">Player</div>
+				<span> &nbsp; VS &nbsp; </span>
+				<div id="computerResult">Computer</div>
+		</div>
+
+		<div id="poolresult"></div>
+
+		<div class="button">
+			<button id="btnrock"><i class="far fa-hand-rock fa-6x"></i></button>
+			<button id="btnpaper"><i class="far fa-hand-paper fa-6x"></i></button>
+			<button id="btnscissor"><i class="far fa-hand-scissors fa-6x"></i></button>
+		</div>
+
+		<div id="scoreid">
+			<div id="playerscoreid"></div>
+			<div id="computerscoreid"></div>
+			<div id="numberofpoolid"></div>
+		</div>
+
+		<div id="buttonplayagainflex">
+			<button id="btnplayagain">PLAY AGAIN</button>
+		</div>
+
+
+
+		<script language="JavaScript">
+
+//Variables declaration and value
+			let computerScore = 0;
+			let playerScore = 0;
+			let numberOfPool = 0;
+			let poolResult = document.getElementById("poolresult");
+			let computerResult = document.getElementById("computerResult");
+			let playerResult = document.getElementById("playerResult");
+			let computerScorePool = document.getElementById("computerscoreid");
+			let playerScorePool = document.getElementById("playerscoreid");
+			let numberOfPoolEnd = document.getElementById("numberofpoolid")
+			let finalScore = document.getElementById("finalscore");
+			let choose = document.getElementById("choose");
+			let firstToFive = document.getElementById("firsttofiveid");
+//variable to generate randomly "rock" "paper" or "scissor"
+			let computerArray = ["rock","paper","scissor"];
+			let computerSelection = computerArray[Math.floor((computerArray.length) * Math.random())];
+
+//function : compare computerSelection and playerSelection and return the result. playerScore increment. numberOfPool increment.
+			function playRound(playerSelection, computerSelection) {
+
+				computerSelection = computerArray[Math.floor((computerArray.length) * Math.random())];
+
+				if (computerSelection === "rock" && playerSelection === "paper") {
+						poolResult.textContent ="You win, paper beats rock!";
+						playerScore++;
+					} else if (computerSelection === "rock" && playerSelection === "scissor") {
+						poolResult.textContent ="you lose, rock beats scissor!";
+						computerScore++;
+					} else if (computerSelection === "paper" && playerSelection === "scissor") {
+						poolResult.textContent ="You win, scissor beats paper!";
+						playerScore++;
+					} else if (computerSelection === "paper" && playerSelection === "rock") {
+						poolResult.textContent ="You lose, paper beats rock!";
+						computerScore++;
+					} else if (computerSelection === "scissor" && playerSelection === "rock") {
+						poolResult.textContent ="You win, rock beats scissor!";
+						playerScore++;
+					} else if (computerSelection === "scissor" && playerSelection === "paper") {
+						poolResult.textContent ="you lose, scissor beats paper!";
+						computerScore++;
+					} else if (computerSelection === playerSelection) {
+						poolResult.textContent ="Equality!";
+					} else { poolResult.textContent ="error" };
+
+					numberOfPool++;
+
+					computerResult.textContent = computerSelection;
+					playerResult.textContent = playerSelection;
+					computerScorePool.textContent = "Computer score : " + computerScore;
+					playerScorePool.textContent = "Player score : " + playerScore;
+					numberOfPoolEnd.textContent = "Number of pool : " + numberOfPool;
+
+				if (playerScore === 5) {
+					finalScore.textContent = "YOU  WIN THIS GAME";
+					disableplaybtns();
+				} else if (computerScore === 5) {
+					finalScore.textContent = "YOU LOSE THIS GAME";
+					disableplaybtns();
+				}
+			}
+
+//event and clicks
+			let rock = document.getElementById("btnrock");
+			rock.addEventListener('click', function() {
+			  let result =  playRound("rock", computerSelection)
+				choose.remove();
+				firstToFive.remove();
+			});
+
+			let paper = document.getElementById("btnpaper");
+			paper.addEventListener('click', function() {
+			  let result =  playRound("paper", computerSelection)
+				choose.remove();
+				firstToFive.remove();
+			});
+
+			let scissor = document.getElementById("btnscissor");
+			scissor.addEventListener('click', function() {
+			  let result =  playRound("scissor", computerSelection)
+				choose.remove();
+				firstToFive.remove();
+			});
+
+			let playAgainButton = document.getElementById("btnplayagain");
+			playAgainButton.disabled = true;
+
+			playAgainButton.addEventListener('click', function reset() {
+				playerScore = 0;
+				computerScore = 0;
+				numberOfPool = 0;
+				computerScorePool.textContent = "Computer score : 0";
+				playerScorePool.textContent = "Player score : 0";
+				numberOfPoolEnd.textContent = "Number of pool : 0";
+				computerResult.textContent = "Computer";
+				playerResult.textContent = "Player";
+				poolResult.textContent ="Who will win ?";
+				enableplaybtns();
+				finalScore.textContent = "";
+			});
+
+			function disableplaybtns() {
+			    rock.disabled = true;
+			    paper.disabled = true;
+			    scissor.disabled = true;
+			    playAgainButton.disabled = false;
+			}
+
+			function enableplaybtns() {
+			    rock.disabled = false;
+			    paper.disabled = false;
+			    scissor.disabled = false;
+			    playAgainButton.disabled = true;
+			}
+
+		</script>
+	</body>
+</html>
