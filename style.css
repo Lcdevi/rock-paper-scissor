@@ -1,5 +1,6 @@
 body {
-  background-color: #38c4c4;
+/*  background-color: #ad77ff;*/
+  background-image: linear-gradient(#ad77ff, #77ffad);
   color: white;
   font-size: 20px;
   font-family: Verdana, sans-serif;
@@ -78,9 +79,14 @@ h1 {
   justify-content: center;
 }
 
-button:hover {
+.button button:hover {
   box-shadow: 0px 0px 10px #243235;
 }
+
+#buttonplayagainflex button:hover {
+  box-shadow: 0px 0px 10px #ffffff;
+}
+
 
 #btnrock, #btnpaper, #btnscissor {
   background: #79FFAF;
@@ -127,11 +133,11 @@ button:hover {
 	outline: inherit;
   font-size: 24px;
   text-transform: uppercase;
-  border: none;
+  border: solid 1px #ffffff;
 }
 
 #btnplayagain:disabled {
-  background: #aefccd;
+  background: #79FFAF;
 	color: white;
   width: 7em;
   height: 2em;
