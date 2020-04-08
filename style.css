@@ -1,6 +1,7 @@
 body {
 /*  background-color: #ad77ff;*/
   background-image: linear-gradient(#ad77ff, #77ffad);
+  background-size: cover;
   color: white;
   font-size: 20px;
   font-family: Verdana, sans-serif;
@@ -8,7 +9,10 @@ body {
   flex-direction: column;
   width: auto;
   height: 650px;
+  background-attachment: fixed;
+  /*background-size: cover;*/
 }
+
 
 h1 {
   font-size: 50px;
