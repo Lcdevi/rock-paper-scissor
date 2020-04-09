@@ -24,6 +24,10 @@ h1 {
   padding: none;
 }
 
+#copyright {
+  font-size: 14px;
+}
+
 #firstflex {
   height: 200px;
   display: flex;
